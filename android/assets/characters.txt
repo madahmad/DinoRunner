@@ -1,0 +1,33 @@
+
+characters.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+platypus1
+  rotate: false
+  xy: 1, 1
+  size: 350, 450
+  orig: 350, 450
+  offset: 0, 0
+  index: -1
+platypus2
+  rotate: false
+  xy: 353, 1
+  size: 350, 450
+  orig: 350, 450
+  offset: 0, 0
+  index: -1
+dolphin1
+  rotate: false
+  xy: 705, 293
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
+dolphin2
+  rotate: false
+  xy: 865, 293
+  size: 158, 158
+  orig: 158, 158
+  offset: 0, 0
+  index: -1
