@@ -197,10 +197,10 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     // ----- Desktop Controls -----
 
-    @Override
-    public boolean keyDown(int keyCode) {
-        switch (keyCode)
-        {
+            @Override
+            public boolean keyDown(int keyCode) {
+            switch (keyCode)
+            {
             case Input.Keys.UP:
                 runner.jump();
             case Input.Keys.DOWN:

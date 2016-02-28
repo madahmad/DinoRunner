@@ -14,7 +14,7 @@ public class AniBattle extends Game {
 
 	@Override
 	public void create() {
-		setScreen(new GameScreen());
+		setScreen(new MainMenuScreen(this));
 	}
 
 	public void render(){
