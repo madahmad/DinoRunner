@@ -53,9 +53,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         setUpWorld();
         setupCamera();
         setupTouchControlAreas();
-
-        // The renderer worked only with other VIEWPORT dimensions
-        // renderer = new Box2DDebugRenderer();
     }
 
     private void setupTouchControlAreas() {
@@ -78,7 +75,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             runner.landed();
         }
-
     }
 
     @Override
