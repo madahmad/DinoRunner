@@ -1,5 +1,6 @@
 package com.santi.anibattle.stages;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
@@ -16,13 +17,17 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
 import com.santi.anibattle.actors.Background;
 import com.santi.anibattle.actors.Enemy;
 import com.santi.anibattle.actors.Ground;
 import com.santi.anibattle.actors.Runner;
+import com.santi.anibattle.actors.ScoreActor;
+import com.santi.anibattle.screens.MainMenuScreen;
 import com.santi.anibattle.utils.BodyUtils;
 import com.santi.anibattle.utils.Constants;
+import com.santi.anibattle.utils.Score;
 import com.santi.anibattle.utils.WorldUtils;
 
 
@@ -34,6 +39,9 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     private World world;
     private Ground ground;
     private Runner runner;
+    private MainMenuStage stage;
+    private Game game;
+    private Score score;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -47,9 +55,10 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     // Constructor
 
-    public GameStage() {
+    public GameStage(Game game) {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
+        this.game = game;
         setUpWorld();
         setupCamera();
         setupTouchControlAreas();
@@ -71,6 +80,15 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsEnemy(b)) ||
                 (BodyUtils.bodyIsEnemy(a) && BodyUtils.bodyIsRunner(b))) {
             runner.hit();
+            float delay = 3; // seconds
+
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    game.setScreen(new MainMenuScreen(game));
+                }
+            }, delay);
+
         } else if ((BodyUtils.bodyIsRunner(a) && BodyUtils.bodyIsGround(b)) ||
                 (BodyUtils.bodyIsGround(a) && BodyUtils.bodyIsRunner(b))) {
             runner.landed();
@@ -99,11 +117,17 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         setUpGround();
         setUpRunner();
         createEnemy();
+        setUpScore();
     }
 
 
     private void setUpBackground() {
         addActor(new Background());
+    }
+
+    private void setUpScore() {
+        score = new Score("0");
+        addActor(new ScoreActor(score));
     }
 
     private void setUpGround() {
@@ -149,6 +173,8 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         if (!BodyUtils.bodyInBounds(body)) {
             if (BodyUtils.bodyIsEnemy(body) && !runner.isHit()) {
                 createEnemy();
+                score.incrementScore();
+                System.out.println(score.getScore());
             }
             world.destroyBody(body);
         }
@@ -193,10 +219,9 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     // ----- Desktop Controls -----
 
-            @Override
-            public boolean keyDown(int keyCode) {
-            switch (keyCode)
-            {
+    @Override
+    public boolean keyDown(int keyCode) {
+        switch (keyCode) {
             case Input.Keys.UP:
                 runner.jump();
             case Input.Keys.DOWN:
@@ -207,7 +232,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     @Override
     public boolean keyUp(int keyCode) {
-        if (keyCode==Input.Keys.DOWN){
+        if (keyCode == Input.Keys.DOWN) {
             runner.stopDodge();
         }
         return true;

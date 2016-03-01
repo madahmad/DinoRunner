@@ -1,5 +1,6 @@
 package com.santi.anibattle.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,8 +10,8 @@ public class GameScreen implements Screen {
 
     private GameStage stage;
 
-    public GameScreen() {
-        stage=new GameStage();
+    public GameScreen(Game game) {
+        stage=new GameStage(game);
     }
 
     @Override

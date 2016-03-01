@@ -3,31 +3,59 @@ characters.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-platypus1
-  rotate: false
-  xy: 1, 1
-  size: 350, 450
-  orig: 350, 450
-  offset: 0, 0
-  index: -1
-platypus2
-  rotate: false
-  xy: 353, 1
-  size: 350, 450
-  orig: 350, 450
-  offset: 0, 0
-  index: -1
 dolphin1
   rotate: false
-  xy: 705, 293
+  xy: 1, 71
   size: 158, 158
   orig: 158, 158
   offset: 0, 0
   index: -1
 dolphin2
   rotate: false
-  xy: 865, 293
+  xy: 1, 71
   size: 158, 158
   orig: 158, 158
+  offset: 0, 0
+  index: -1
+shooter1
+  rotate: false
+  xy: 161, 116
+  size: 102, 113
+  orig: 102, 113
+  offset: 0, 0
+  index: -1
+shooter6
+  rotate: false
+  xy: 161, 116
+  size: 102, 113
+  orig: 102, 113
+  offset: 0, 0
+  index: -1
+shooter2
+  rotate: false
+  xy: 265, 116
+  size: 102, 113
+  orig: 102, 113
+  offset: 0, 0
+  index: -1
+shooter3
+  rotate: false
+  xy: 369, 116
+  size: 102, 113
+  orig: 102, 113
+  offset: 0, 0
+  index: -1
+shooter4
+  rotate: false
+  xy: 161, 1
+  size: 102, 113
+  orig: 102, 113
+  offset: 0, 0
+  index: -1
+shooter5
+  rotate: false
+  xy: 265, 1
+  size: 102, 113
+  orig: 102, 113
   offset: 0, 0
   index: -1

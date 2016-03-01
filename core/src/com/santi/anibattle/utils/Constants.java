@@ -9,10 +9,11 @@ public class Constants {
 
     public static final String CHARACTERS_ATLAS_PATH = "characters.txt";
 
-    public static final String[] RUNNER_RUNNING_REGION_NAMES = new String[] {"platypus1", "platypus2"};
-    public static final String RUNNER_DODGING_REGION_NAME = "platypus2";
-    public static final String RUNNER_HIT_REGION_NAME = "platypus2";
-    public static final String RUNNER_JUMPING_REGION_NAME = "platypus2";
+    public static final String[] RUNNER_RUNNING_REGION_NAMES = new String[] {
+            "shooter1", "shooter2","shooter3","shooter4","shooter5","shooter6"};
+    public static final String RUNNER_DODGING_REGION_NAME = "shooter1";
+    public static final String RUNNER_HIT_REGION_NAME = "shooter2";
+    public static final String RUNNER_JUMPING_REGION_NAME = "shooter3";
 
     public static final String[] RUNNING_SMALL_ENEMY_REGION_NAMES = new String[] {"ladyBug_walk1", "ladyBug_walk2"};
     public static final String[] RUNNING_LONG_ENEMY_REGION_NAMES = new String[] {"barnacle_bite1", "barnacle_bite2"};
@@ -23,7 +24,7 @@ public class Constants {
 
     public static final String[] DOLPHIN_ENEMY_REGION_NAMES = new String[] {"dolphin1", "dolphin2"};
 
-    public static final Vector2 WORLD_GRAVITY = new Vector2(0, -10);
+    public static final Vector2 WORLD_GRAVITY = new Vector2(0, -10); // default: -10
 
     public static final String BACKGROUND_IMAGE_PATH="underwater.jpg";
     public static final String GROUND_IMAGE_PATH="ground.png";
@@ -43,7 +44,7 @@ public class Constants {
     public static final float RUNNER_GRAVITY_SCALE=3f;
     public static final float RUNNER_DODGE_X=2f;
     public static final float RUNNER_DODGE_Y=1.5f;
-    public static final Vector2 RUNNER_JUMPING_LINEAR_IMPULSE = new Vector2(0,13f);
+    public static final Vector2 RUNNER_JUMPING_LINEAR_IMPULSE = new Vector2(3f,20f); // default: 0,13f
     public static final float RUNNER_HIT_ANGULAR_IMPULSE=10f;
 
     public static final float ENEMY_X = 25f;

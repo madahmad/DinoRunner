@@ -28,12 +28,10 @@ public class MainMenuStage extends Stage implements InputProcessor {
     SpriteBatch batch;
     Game game;
 
-
     public MainMenuStage(Game game) {
         super(new ScalingViewport(Scaling.stretch, VIEWPORT_WIDTH, VIEWPORT_HEIGHT,
                 new OrthographicCamera(VIEWPORT_WIDTH, VIEWPORT_HEIGHT)));
         this.game = game;
-        System.out.println("this.game" + this.game.toString());
         initialize();
     }
 
@@ -81,9 +79,8 @@ public class MainMenuStage extends Stage implements InputProcessor {
         textButton.addListener(
                 new ChangeListener() {
                     public void changed(ChangeEvent event, Actor actor) {
-                        System.out.println("Button Clicked");
                         textButton.setText("Starting new game");
-                        game.setScreen(new GameScreen());
+                        game.setScreen(new GameScreen(game));
                     }
                 }
         );
