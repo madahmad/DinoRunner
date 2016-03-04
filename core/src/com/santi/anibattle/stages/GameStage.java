@@ -49,8 +49,12 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     private OrthographicCamera camera;
     private Box2DDebugRenderer renderer;
 
-    private Rectangle screenRightSide;
-    private Rectangle screenLeftSide;
+    private Rectangle moveLeftControl;
+    private Rectangle moveRightControl;
+    private Rectangle moveUpControl;
+    private Rectangle moveDownControl;
+
+
     private Vector3 touchPoint;
 
     // Constructor
@@ -66,9 +70,14 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     private void setupTouchControlAreas() {
         touchPoint = new Vector3();
-        screenRightSide = new Rectangle(getCamera().viewportWidth / 2, 0, getCamera().viewportWidth / 2,
-                getCamera().viewportHeight);
-        screenLeftSide = new Rectangle(0, 0, getCamera().viewportWidth / 2, getCamera().viewportHeight);
+        moveLeftControl = new Rectangle(0, 0,
+                getCamera().viewportWidth / 3, getCamera().viewportHeight);
+        moveRightControl = new Rectangle(getCamera().viewportWidth * (2/3), 0,
+                getCamera().viewportWidth / 3, getCamera().viewportHeight);
+        moveUpControl = new Rectangle(getCamera().viewportWidth / 3, getCamera().viewportHeight/2,
+                getCamera().viewportWidth/3, getCamera().viewportHeight/2);
+        moveDownControl = new Rectangle(getCamera().viewportWidth / 3, 0,
+                getCamera().viewportWidth/3, getCamera().viewportHeight/2);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -174,7 +183,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
             if (BodyUtils.bodyIsEnemy(body) && !runner.isHit()) {
                 createEnemy();
                 score.incrementScore();
-                System.out.println(score.getScore());
             }
             world.destroyBody(body);
         }
@@ -188,11 +196,17 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
         translateScreenToWorldCoordinates(x, y);
-
-        if (rightSideTouched(touchPoint.x, touchPoint.y)) {
-            runner.jump();
-        } else if (leftSideTouched(touchPoint.x, touchPoint.y)) {
+        System.out.println("x:"+x+", y:"+y);
+        if (leftControlTouched(touchPoint.x, touchPoint.y)) {
             runner.dodge();
+            Gdx.app.log("Control","Left");
+        } else if (rightControlTouched(touchPoint.x, touchPoint.y)) {
+            runner.jump();
+            Gdx.app.log("Control", "Right");
+        } else if (upControlTouched(touchPoint.x, touchPoint.y)){
+            Gdx.app.log("Control","Up");
+        } else if (downControlTouched(touchPoint.x, touchPoint.y)){
+            Gdx.app.log("Control","Down");
         }
         return super.touchDown(x, y, pointer, button);
     }
@@ -205,13 +219,22 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
-    private boolean rightSideTouched(float x, float y) {
-        return screenRightSide.contains(x, y);
+    private boolean rightControlTouched(float x, float y) {
+        return moveRightControl.contains(x, y);
     }
 
-    private boolean leftSideTouched(float x, float y) {
-        return screenLeftSide.contains(x, y);
+    private boolean leftControlTouched(float x, float y) {
+        return moveLeftControl.contains(x, y);
     }
+
+    private boolean upControlTouched(float x, float y) {
+        return moveUpControl.contains(x, y);
+    }
+
+    private boolean downControlTouched(float x, float y) {
+        return moveDownControl.contains(x, y);
+    }
+
 
     private void translateScreenToWorldCoordinates(int x, int y) {
         getCamera().unproject(touchPoint.set(x, y, 0));

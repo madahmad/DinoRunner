@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
 
-    public static final int APP_WIDTH=800;
-    public static final int APP_HEIGHT=480;
+    public static final int APP_WIDTH=1280;
+    public static final int APP_HEIGHT=720;
 
     public static final String CHARACTERS_ATLAS_PATH = "characters.txt";
 
