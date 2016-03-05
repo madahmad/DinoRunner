@@ -6,9 +6,9 @@ import com.santi.anibattle.enums.UserDataType;
 
 public class BodyUtils {
 
-    public static boolean bodyIsRunner(Body body){
+    public static boolean bodyIsPlayer(Body body){
         UserData userData = (UserData) body.getUserData();
-        return userData != null && userData.getUserDataType()== UserDataType.RUNNER;
+        return userData != null && userData.getUserDataType()== UserDataType.PLAYER;
     }
 
     public static boolean bodyIsGround(Body body){
@@ -20,7 +20,7 @@ public class BodyUtils {
         UserData userData = (UserData) body.getUserData();
 
         switch (userData.getUserDataType()) {
-            case RUNNER:
+            case PLAYER:
             case ENEMY:
                 return body.getPosition().x + userData.getWidth() / 2 > 0;
         }

@@ -6,11 +6,11 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.santi.anibattle.box2d.RunnerUserData;
+import com.santi.anibattle.box2d.PlayerUserData;
 import com.santi.anibattle.box2d.UserData;
 import com.santi.anibattle.utils.Constants;
 
-public class Runner extends GameActor{
+public class Player extends GameActor{
 
     private boolean jumping;
     private boolean dodging;
@@ -21,19 +21,19 @@ public class Runner extends GameActor{
     private TextureRegion hitTexture;
     private float stateTime;
 
-    public Runner(Body body){
+    public Player(Body body){
         super(body);
         TextureAtlas textureAtlas = new TextureAtlas(Constants.CHARACTERS_ATLAS_PATH);
-        TextureRegion[] runningFrames = new TextureRegion[Constants.RUNNER_RUNNING_REGION_NAMES.length];
-        for (int i = 0; i < Constants.RUNNER_RUNNING_REGION_NAMES.length; i++) {
-            String path = Constants.RUNNER_RUNNING_REGION_NAMES[i];
+        TextureRegion[] runningFrames = new TextureRegion[Constants.PLAYER_RUNNING_REGION_NAMES.length];
+        for (int i = 0; i < Constants.PLAYER_RUNNING_REGION_NAMES.length; i++) {
+            String path = Constants.PLAYER_RUNNING_REGION_NAMES[i];
             runningFrames[i] = textureAtlas.findRegion(path);
         }
         runningAnimation = new Animation(0.1f, runningFrames);
         stateTime = 0f;
-        jumpingTexture = textureAtlas.findRegion(Constants.RUNNER_JUMPING_REGION_NAME);
-        dodgingTexture = textureAtlas.findRegion(Constants.RUNNER_DODGING_REGION_NAME);
-        hitTexture = textureAtlas.findRegion(Constants.RUNNER_HIT_REGION_NAME);
+        jumpingTexture = textureAtlas.findRegion(Constants.PLAYER_JUMPING_REGION_NAME);
+        dodgingTexture = textureAtlas.findRegion(Constants.PLAYER_DODGING_REGION_NAME);
+        hitTexture = textureAtlas.findRegion(Constants.PLAYER_HIT_REGION_NAME);
     }
 
     @Override
@@ -63,8 +63,16 @@ public class Runner extends GameActor{
     }
 
     @Override
-    public RunnerUserData getUserData() {
-        return (RunnerUserData) userData;
+    public PlayerUserData getUserData() {
+        return (PlayerUserData) userData;
+    }
+
+    public void moveRight(){
+        body.applyLinearImpulse(getUserData().getRightLinearImpulse(),body.getWorldCenter(), true);
+    }
+
+    public void stopMoving(){
+        body.setLinearVelocity(getUserData().getStopVelocity());
     }
 
     public void jump(){
@@ -94,6 +102,10 @@ public class Runner extends GameActor{
 
     public boolean isDodging() {
         return dodging;
+    }
+
+    public boolean isJumping(){
+        return jumping;
     }
 
     public void hit(){
