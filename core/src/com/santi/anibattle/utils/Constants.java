@@ -4,31 +4,18 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Constants {
 
-    public static final int APP_WIDTH=1280;
-    public static final int APP_HEIGHT=720;
+    public static final int APP_WIDTH = 800;
+    public static final int APP_HEIGHT = 480;
 
-    public static final String CHARACTERS_ATLAS_PATH = "characters.txt";
-
-    public static final String[] PLAYER_RUNNING_REGION_NAMES = new String[] {
-            "shooter1", "shooter2","shooter3","shooter4","shooter5","shooter6"};
-    public static final String PLAYER_DODGING_REGION_NAME = "shooter1";
-    public static final String PLAYER_HIT_REGION_NAME = "shooter2";
-    public static final String PLAYER_JUMPING_REGION_NAME = "shooter3";
-
-    public static final String[] RUNNING_SMALL_ENEMY_REGION_NAMES = new String[] {"ladyBug_walk1", "ladyBug_walk2"};
-    public static final String[] RUNNING_LONG_ENEMY_REGION_NAMES = new String[] {"barnacle_bite1", "barnacle_bite2"};
-    public static final String[] RUNNING_BIG_ENEMY_REGION_NAMES = new String[] {"spider_walk1", "spider_walk2"};
-    public static final String[] RUNNING_WIDE_ENEMY_REGION_NAMES = new String[] {"worm_walk1", "worm_walk2"};
-    public static final String[] FLYING_SMALL_ENEMY_REGION_NAMES = new String[] {"bee_fly1", "bee_fly2"};
-    public static final String[] FLYING_WIDE_ENEMY_REGION_NAMES = new String[] {"fly_fly1", "fly_fly2"};
-
-    public static final String[] DOLPHIN_ENEMY_REGION_NAMES = new String[] {"dolphin1", "dolphin2"};
+    public static final String DINO_ATLAS = "dino.txt";
+    public static final String CRAB_ATLAS = "crab.txt";
+    public static final String ROBOT_ATLAS = "robot.txt";
 
     public static final Vector2 WORLD_GRAVITY = new Vector2(0, -10); // default: -10
 
-    public static final String BACKGROUND_IMAGE_PATH="underwater.jpg";
-    public static final String GROUND_IMAGE_PATH="ground.png";
-    public static final float WORLD_TO_SCREEN=32;
+    public static final String BACKGROUND_IMAGE_PATH = "bg.jpg";
+    public static final String GROUND_IMAGE_PATH = "ground.png";
+    public static final float WORLD_TO_SCREEN = 32;
 
     public static final float GROUND_X = 0;
     public static final float GROUND_Y = 0;
@@ -41,14 +28,12 @@ public class Constants {
     public static final float PLAYER_WIDTH = 1f;
     public static final float PLAYER_HEIGHT = 2f;
     public static float PLAYER_DENSITY = 0.5f;
-    public static final float PLAYER_GRAVITY_SCALE=3f;
-    public static final float PLAYER_DODGE_X=2f;
-    public static final float PLAYER_DODGE_Y=1.5f;
-    public static final Vector2 PLAYER_RIGHT_LINEAR_IMPULSE = new Vector2(10f,0f);
-    public static final Vector2 PLAYER_LEFT_LINEAR_IMPULSE = new Vector2(-10f,0f);
-    public static final Vector2 PLAYER_STOP_VELOCITY = new Vector2(0f,0f);
-    public static final Vector2 PLAYER_JUMPING_LINEAR_IMPULSE = new Vector2(3f,20f); // default: 0,13f
-    public static final float PLAYER_HIT_ANGULAR_IMPULSE=10f;
+    public static final float PLAYER_GRAVITY_SCALE = 3f;
+    public static final float PLAYER_DODGE_X = 2f;
+    public static final float PLAYER_DODGE_Y = 1.5f;
+    public static final Vector2 PLAYER_STOP_VELOCITY = new Vector2(0f, 0f);
+    public static final Vector2 PLAYER_JUMPING_LINEAR_IMPULSE = new Vector2(0f, 20f); // default: 0,13f
+    public static final float PLAYER_HIT_ANGULAR_IMPULSE = 10f;
 
     public static final float ENEMY_X = 25f;
     public static final float ENEMY_DENSITY = PLAYER_DENSITY;

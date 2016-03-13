@@ -4,16 +4,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.santi.anibattle.enums.UserDataType;
 import com.santi.anibattle.utils.Constants;
 
-public class EnemyUserData extends UserData{
+public class EnemyUserData extends UserData {
 
     private Vector2 linearVelocity;
-    private String[] textureRegions;
+    private String textureAtlas;
 
-    public EnemyUserData (float width, float height, String[] textureRegions){
-        super(width,height);
-        userDataType= UserDataType.ENEMY;
-        linearVelocity= Constants.ENEMY_LINEAR_VELOCITY;
-        this.textureRegions=textureRegions;
+    public EnemyUserData(float width, float height, String textureAtlas) {
+        super(width, height);
+        userDataType = UserDataType.ENEMY;
+        linearVelocity = Constants.ENEMY_LINEAR_VELOCITY;
+        this.textureAtlas = textureAtlas;
     }
 
     public Vector2 getLinearVelocity() {
@@ -24,7 +24,7 @@ public class EnemyUserData extends UserData{
         this.linearVelocity = linearVelocity;
     }
 
-    public String[] getTextureRegions() {
-        return textureRegions;
+    public String getTextureAtlas() {
+        return textureAtlas;
     }
 }

@@ -67,8 +67,8 @@ public class MainMenuStage extends Stage implements InputProcessor {
         skin.add("default", textButtonStyle);
 
         // Create a button with the "default" TextButtonStyle. A 3rd parameter can be used to specify a name other than "default".
-        final TextButton textButton = new TextButton("PLAY", textButtonStyle);
-        textButton.setPosition(200, 200);
+        final TextButton textButton = new TextButton("Play", textButtonStyle);
+        textButton.setPosition(VIEWPORT_WIDTH/2 - 50, VIEWPORT_HEIGHT/2 - 50);
         super.addActor(textButton);
 
         // Add a listener to the button. ChangeListener is fired when the button's checked state changes, eg when clicked,

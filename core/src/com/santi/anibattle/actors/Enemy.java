@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.santi.anibattle.box2d.EnemyUserData;
 import com.santi.anibattle.box2d.UserData;
+import com.santi.anibattle.enums.EnemyType;
 import com.santi.anibattle.utils.Constants;
 
 public class Enemy extends GameActor {
@@ -15,16 +16,10 @@ public class Enemy extends GameActor {
     private Animation animation;
     private float stateTime;
 
-    public Enemy(Body body) {
+    public Enemy(Body body, EnemyType enemyType) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(Constants.CHARACTERS_ATLAS_PATH);
-
-        TextureRegion[] runningFrames = new TextureRegion[getUserData().getTextureRegions().length];
-        for (int i = 0; i < getUserData().getTextureRegions().length; i++) {
-            String path = getUserData().getTextureRegions()[i];
-            runningFrames[i] = textureAtlas.findRegion(path);
-        }
-        animation = new Animation(0.1f, runningFrames);
+        TextureAtlas textureAtlas = new TextureAtlas(enemyType.getAtlas());
+        animation = new Animation(1f / textureAtlas.getRegions().size * 3, textureAtlas.getRegions());
         stateTime = 0f;
     }
 

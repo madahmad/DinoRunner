@@ -7,10 +7,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.santi.anibattle.box2d.PlayerUserData;
-import com.santi.anibattle.box2d.UserData;
 import com.santi.anibattle.utils.Constants;
 
-public class Player extends GameActor{
+public class Player extends GameActor {
 
     private boolean jumping;
     private boolean dodging;
@@ -21,19 +20,14 @@ public class Player extends GameActor{
     private TextureRegion hitTexture;
     private float stateTime;
 
-    public Player(Body body){
+    public Player(Body body) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(Constants.CHARACTERS_ATLAS_PATH);
-        TextureRegion[] runningFrames = new TextureRegion[Constants.PLAYER_RUNNING_REGION_NAMES.length];
-        for (int i = 0; i < Constants.PLAYER_RUNNING_REGION_NAMES.length; i++) {
-            String path = Constants.PLAYER_RUNNING_REGION_NAMES[i];
-            runningFrames[i] = textureAtlas.findRegion(path);
-        }
-        runningAnimation = new Animation(0.1f, runningFrames);
+        TextureAtlas textureAtlas = new TextureAtlas("dino.txt");
+        runningAnimation = new Animation(1/79f * 3, textureAtlas.getRegions());
         stateTime = 0f;
-        jumpingTexture = textureAtlas.findRegion(Constants.PLAYER_JUMPING_REGION_NAME);
-        dodgingTexture = textureAtlas.findRegion(Constants.PLAYER_DODGING_REGION_NAME);
-        hitTexture = textureAtlas.findRegion(Constants.PLAYER_HIT_REGION_NAME);
+        jumpingTexture = textureAtlas.getRegions().first();
+        dodgingTexture = textureAtlas.getRegions().first();
+        hitTexture = textureAtlas.getRegions().first();
     }
 
     @Override
@@ -67,27 +61,23 @@ public class Player extends GameActor{
         return (PlayerUserData) userData;
     }
 
-    public void moveRight(){
-        body.applyLinearImpulse(getUserData().getRightLinearImpulse(),body.getWorldCenter(), true);
-    }
-
-    public void stopMoving(){
+    public void stopMoving() {
         body.setLinearVelocity(getUserData().getStopVelocity());
     }
 
-    public void jump(){
-        if(!(jumping||dodging||hit)){
+    public void jump() {
+        if (!(jumping || dodging || hit)) {
             body.applyLinearImpulse(getUserData().getJumpingLinearImpulse(), body.getWorldCenter(), true);
-            jumping=true;
+            jumping = true;
         }
     }
 
-    public void landed(){
-        jumping=false;
+    public void landed() {
+        jumping = false;
     }
 
     public void dodge() {
-        if (!(jumping||hit)) {
+        if (!(jumping || hit)) {
             body.setTransform(getUserData().getDodgePosition(), getUserData().getDodgeAngle());
             dodging = true;
         }
@@ -95,7 +85,7 @@ public class Player extends GameActor{
 
     public void stopDodge() {
         dodging = false;
-        if(!hit){
+        if (!hit) {
             body.setTransform(getUserData().getRunningPosition(), 0f);
         }
     }
@@ -104,16 +94,16 @@ public class Player extends GameActor{
         return dodging;
     }
 
-    public boolean isJumping(){
+    public boolean isJumping() {
         return jumping;
     }
 
-    public void hit(){
-        body.applyAngularImpulse(getUserData().getHitAngularImpulse(),true);
-        hit=true;
+    public void hit() {
+        body.applyAngularImpulse(getUserData().getHitAngularImpulse(), true);
+        hit = true;
     }
 
-    public boolean isHit(){
+    public boolean isHit() {
         return hit;
     }
 }

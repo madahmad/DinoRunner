@@ -23,11 +23,9 @@ import com.santi.anibattle.actors.Enemy;
 import com.santi.anibattle.actors.Ground;
 import com.santi.anibattle.actors.Player;
 import com.santi.anibattle.actors.ScoreActor;
+import com.santi.anibattle.enums.EnemyType;
 import com.santi.anibattle.screens.MainMenuScreen;
-import com.santi.anibattle.utils.BodyUtils;
-import com.santi.anibattle.utils.Constants;
-import com.santi.anibattle.utils.Score;
-import com.santi.anibattle.utils.WorldUtils;
+import com.santi.anibattle.utils.*;
 
 public class GameStage extends Stage implements ContactListener, InputProcessor {
 
@@ -44,7 +42,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     private float accumulator = 0f;
 
     private OrthographicCamera camera;
-    // private Box2DDebugRenderer renderer;
 
     private Rectangle moveLeftControl;
     private Rectangle moveRightControl;
@@ -82,7 +79,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         touchPoint = new Vector3();
         moveLeftControl = new Rectangle(0, 0,
                 getCamera().viewportWidth / 3, getCamera().viewportHeight);
-        moveRightControl = new Rectangle(getCamera().viewportWidth * (float)2/3, 0,
+        moveRightControl = new Rectangle(getCamera().viewportWidth * (float) 2 / 3, 0,
                 getCamera().viewportWidth / 3, getCamera().viewportHeight);
         moveUpControl = new Rectangle(getCamera().viewportWidth / 3, getCamera().viewportHeight / 2,
                 getCamera().viewportWidth / 3, getCamera().viewportHeight / 2);
@@ -159,8 +156,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
             update(body);
         }
 
-        // Fixed timestep
-
         accumulator += delta;
 
         while (accumulator >= delta) {
@@ -182,7 +177,8 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     }
 
     private void createEnemy() {
-        Enemy enemy = new Enemy(WorldUtils.createEnemy(world));
+        EnemyType enemyType = RandomUtils.getRandomEnemyType();
+        Enemy enemy = new Enemy(WorldUtils.createEnemy(world, enemyType), enemyType);
         addActor(enemy);
     }
 
@@ -193,8 +189,9 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         translateScreenToWorldCoordinates(x, y);
         Gdx.app.log("Touched", "x:" + x + ", y:" + y);
         if (leftControlTouched(touchPoint.x, touchPoint.y)) {
+            //
         } else if (rightControlTouched(touchPoint.x, touchPoint.y)) {
-            player.moveRight();
+            // player.moveRight();
         } else if (upControlTouched(touchPoint.x, touchPoint.y)) {
             player.jump();
         } else if (downControlTouched(touchPoint.x, touchPoint.y)) {
@@ -208,7 +205,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         if (player.isDodging()) {
             player.stopDodge();
         }
-        if (!player.isJumping()){
+        if (!player.isJumping()) {
             player.stopMoving();
         }
         return super.touchUp(screenX, screenY, pointer, button);

@@ -10,23 +10,17 @@ public class PlayerUserData extends UserData {
     private final Vector2 dodgePosition = new Vector2(Constants.PLAYER_DODGE_X, Constants.PLAYER_DODGE_Y);
 
     private Vector2 jumpingLinearImpulse;
-    private Vector2 rightLinearImpulse;
     private Vector2 stopVelocity;
 
     public PlayerUserData(float width, float height) {
         super(width, height);
         jumpingLinearImpulse = Constants.PLAYER_JUMPING_LINEAR_IMPULSE;
-        rightLinearImpulse = Constants.PLAYER_RIGHT_LINEAR_IMPULSE;
         stopVelocity = Constants.PLAYER_STOP_VELOCITY;
         userDataType = UserDataType.PLAYER;
     }
 
     public Vector2 getJumpingLinearImpulse() {
         return jumpingLinearImpulse;
-    }
-
-    public Vector2 getRightLinearImpulse() {
-        return rightLinearImpulse;
     }
 
     public Vector2 getStopVelocity() {

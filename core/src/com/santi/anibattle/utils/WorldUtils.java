@@ -43,8 +43,7 @@ public class WorldUtils {
         return body;
     }
 
-    public static Body createEnemy(World world) {
-        EnemyType enemyType = RandomUtils.getRandomEnemyType();
+    public static Body createEnemy(World world, EnemyType enemyType) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.KinematicBody;
         bodyDef.position.set(new Vector2(enemyType.getX(), enemyType.getY()));
@@ -53,7 +52,7 @@ public class WorldUtils {
         Body body = world.createBody(bodyDef);
         body.createFixture(shape, enemyType.getDensity());
         body.resetMassData();
-        EnemyUserData userData = new EnemyUserData(enemyType.getWidth(), enemyType.getHeight(), enemyType.getRegions());
+        EnemyUserData userData = new EnemyUserData(enemyType.getWidth(), enemyType.getHeight(), enemyType.getAtlas());
         body.setUserData(userData);
         shape.dispose();
         return body;
