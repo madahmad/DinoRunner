@@ -20,10 +20,6 @@ public class EnemyUserData extends UserData {
         return linearVelocity;
     }
 
-    public void setLinearVelocity(Vector2 linearVelocity) {
-        this.linearVelocity = linearVelocity;
-    }
-
     public String getTextureAtlas() {
         return textureAtlas;
     }

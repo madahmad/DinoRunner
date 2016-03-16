@@ -28,7 +28,7 @@ public class WorldUtils {
         return body;
     }
 
-    public static Body createRunner(World world) {
+    public static Body createPlayer(World world) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
         bodyDef.position.set(new Vector2(Constants.PLAYER_X, Constants.PLAYER_Y));

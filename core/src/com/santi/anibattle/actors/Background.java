@@ -21,7 +21,6 @@ public class Background extends Actor {
         textureRegionBounds2 = new Rectangle(Constants.APP_WIDTH / 2, 0, Constants.APP_WIDTH, Constants.APP_HEIGHT);
     }
 
-
     @Override
     public void act(float delta) {
         if (leftBoundsReached(delta)) {
@@ -31,14 +30,13 @@ public class Background extends Actor {
         }
     }
 
-
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        batch.draw(textureRegion, textureRegionBounds1.x, textureRegionBounds1.y, Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
-        batch.draw(textureRegion, textureRegionBounds2.x, textureRegionBounds2.y, Constants.APP_WIDTH,
-                Constants.APP_HEIGHT);
+        batch.draw(textureRegion, textureRegionBounds1.x, textureRegionBounds1.y,
+                Constants.APP_WIDTH, Constants.APP_HEIGHT);
+        batch.draw(textureRegion, textureRegionBounds2.x, textureRegionBounds2.y,
+                Constants.APP_WIDTH, Constants.APP_HEIGHT);
     }
 
     private boolean leftBoundsReached(float delta) {

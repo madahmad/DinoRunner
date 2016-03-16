@@ -3,32 +3,35 @@ package com.santi.anibattle.actors;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.santi.anibattle.utils.Score;
+import com.santi.anibattle.utils.Constants;
 
 public class ScoreActor extends Actor {
 
-    private SpriteBatch batch;
     private BitmapFont font;
-    private Score score;
+    private int intScore;
 
-    public ScoreActor(Score score) {
-        batch = new SpriteBatch();
+    public ScoreActor(int intScore) {
         font = new BitmapFont();
         font.setColor(Color.WHITE);
         font.getData().setScale(3, 3);
-        this.score = score;
+        this.intScore = intScore;
     }
 
-    @Override
-    public void act(float delta) {
+    public int getScore(){
+        return intScore;
+    }
+
+    public void setScore(int intScore){
+        this.intScore = intScore;
     }
 
     @Override
     public void draw(Batch batch, float parentAlpha) {
         super.draw(batch, parentAlpha);
-        font.draw(batch, score.getScore(), 700, 400);    // 0,0 is bottom left
+        font.draw(batch, Integer.toString(getScore()),
+                Constants.APP_WIDTH - 50f,
+                Constants.APP_HEIGHT - 50f);
     }
 
 }

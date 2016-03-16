@@ -22,9 +22,6 @@ import com.santi.anibattle.utils.Constants;
 
 public class MainMenuScreen implements Screen {
 
-    private static final int VIEWPORT_WIDTH = Constants.APP_WIDTH;
-    private static final int VIEWPORT_HEIGHT = Constants.APP_HEIGHT;
-
     private MainMenuStage stage;
 
     public MainMenuScreen(Game game) {

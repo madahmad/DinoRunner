@@ -16,9 +16,9 @@ public class Enemy extends GameActor {
     private Animation animation;
     private float stateTime;
 
-    public Enemy(Body body, EnemyType enemyType) {
+    public Enemy(Body body) {
         super(body);
-        TextureAtlas textureAtlas = new TextureAtlas(enemyType.getAtlas());
+        TextureAtlas textureAtlas = new TextureAtlas(getUserData().getTextureAtlas());
         animation = new Animation(1f / textureAtlas.getRegions().size * 3, textureAtlas.getRegions());
         stateTime = 0f;
     }
@@ -39,6 +39,6 @@ public class Enemy extends GameActor {
         super.draw(batch, parentAlpha);
         stateTime += Gdx.graphics.getDeltaTime();
         batch.draw(animation.getKeyFrame(stateTime, true), (screenRectangle.x - (screenRectangle.width * 0.1f)),
-                screenRectangle.y, screenRectangle.width * 1.2f, screenRectangle.height * 1.1f);
+                screenRectangle.y, screenRectangle.width * 1.2f, screenRectangle.height * 1.1f);    //TODO: what is this?
     }
 }

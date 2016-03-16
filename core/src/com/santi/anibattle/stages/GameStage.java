@@ -36,7 +36,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     private Ground ground;
     private Player player;
     private Game game;
-    private Score score;
+    private ScoreActor score;
 
     private final float TIME_STEP = 1 / 300f;
     private float accumulator = 0f;
@@ -47,7 +47,6 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     private Rectangle moveRightControl;
     private Rectangle moveUpControl;
     private Rectangle moveDownControl;
-
     private Vector3 touchPoint;
 
     public GameStage(Game game) {
@@ -98,13 +97,13 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     }
 
     private void setUpRunner() {
-        player = new Player(WorldUtils.createRunner(world));
+        player = new Player(WorldUtils.createPlayer(world));
         addActor(player);
     }
 
     private void setUpScore() {
-        score = new Score("0");
-        addActor(new ScoreActor(score));
+        score = new ScoreActor(0);
+        addActor(score);
     }
 
     @Override
@@ -170,7 +169,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         if (!BodyUtils.bodyInBounds(body)) {
             if (BodyUtils.bodyIsEnemy(body) && !player.isHit()) {
                 createEnemy();
-                score.incrementScore();
+                score.setScore(score.getScore() + 1);
             }
             world.destroyBody(body);
         }
@@ -178,11 +177,11 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
 
     private void createEnemy() {
         EnemyType enemyType = RandomUtils.getRandomEnemyType();
-        Enemy enemy = new Enemy(WorldUtils.createEnemy(world, enemyType), enemyType);
+        Enemy enemy = new Enemy(WorldUtils.createEnemy(world, enemyType));
         addActor(enemy);
     }
 
-    // ----- Controls -----
+    // Controls
 
     @Override
     public boolean touchDown(int x, int y, int pointer, int button) {
@@ -205,9 +204,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         if (player.isDodging()) {
             player.stopDodge();
         }
-        if (!player.isJumping()) {
-            player.stopMoving();
-        }
+
         return super.touchUp(screenX, screenY, pointer, button);
     }
 
@@ -231,7 +228,7 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
         getCamera().unproject(touchPoint.set(x, y, 0));
     }
 
-    // ----- Desktop Controls -----
+    // Desktop Controls
 
     @Override
     public boolean keyDown(int keyCode) {
@@ -239,7 +236,9 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
             case Input.Keys.UP:
                 player.jump();
             case Input.Keys.DOWN:
-                player.dodge();
+                if (!player.isJumping()) {
+                    player.dodge();
+                }
         }
         return true;
     }
@@ -247,7 +246,9 @@ public class GameStage extends Stage implements ContactListener, InputProcessor 
     @Override
     public boolean keyUp(int keyCode) {
         if (keyCode == Input.Keys.DOWN) {
-            player.stopDodge();
+            if (player.isDodging()) {
+                player.stopDodge();
+            }
         }
         return true;
     }

@@ -8,8 +8,6 @@ import com.badlogic.gdx.Game;
 import com.santi.anibattle.screens.GameScreen;
 import com.santi.anibattle.screens.MainMenuScreen;
 
-// If it extends Game, it can support multiple screens.
-
 public class AniBattle extends Game {
 
 	@Override

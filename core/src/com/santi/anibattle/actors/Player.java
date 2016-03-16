@@ -61,10 +61,6 @@ public class Player extends GameActor {
         return (PlayerUserData) userData;
     }
 
-    public void stopMoving() {
-        body.setLinearVelocity(getUserData().getStopVelocity());
-    }
-
     public void jump() {
         if (!(jumping || dodging || hit)) {
             body.applyLinearImpulse(getUserData().getJumpingLinearImpulse(), body.getWorldCenter(), true);
