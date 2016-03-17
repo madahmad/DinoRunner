@@ -1,0 +1,172 @@
+crab.png
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+area1.1
+  rotate: false
+  xy: 1, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area2.2
+  rotate: false
+  xy: 132, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area3.3
+  rotate: false
+  xy: 263, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area4.4
+  rotate: false
+  xy: 394, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area5.5
+  rotate: false
+  xy: 525, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area6.6
+  rotate: false
+  xy: 656, 1
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area7.1
+  rotate: false
+  xy: 1, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area8.2
+  rotate: false
+  xy: 132, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area9.3
+  rotate: false
+  xy: 263, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area10.4
+  rotate: false
+  xy: 394, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area11.5
+  rotate: false
+  xy: 525, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area12.6
+  rotate: false
+  xy: 656, 130
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area13.1
+  rotate: false
+  xy: 1, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area14.2
+  rotate: false
+  xy: 132, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area15.3
+  rotate: false
+  xy: 263, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area16.4
+  rotate: false
+  xy: 394, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area17.5
+  rotate: false
+  xy: 525, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area18.6
+  rotate: false
+  xy: 656, 259
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area19.1
+  rotate: false
+  xy: 1, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area20.2
+  rotate: false
+  xy: 132, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area21.3
+  rotate: false
+  xy: 263, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area22.4
+  rotate: false
+  xy: 394, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area23.5
+  rotate: false
+  xy: 525, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
+area24.6
+  rotate: false
+  xy: 656, 388
+  size: 131, 129
+  orig: 131, 129
+  offset: 0, 0
+  index: -1
